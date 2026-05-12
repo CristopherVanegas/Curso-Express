@@ -1,0 +1,29 @@
+{
+  "name": "clase-2---curso-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "http.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon http.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CristopherVanegas/Curso-Express.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/CristopherVanegas/Curso-Express/issues"
+  },
+  "homepage": "https://github.com/CristopherVanegas/Curso-Express#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.14",
+    "standard": "^17.1.2"
+  },
+  "eslintConfig": {
+    "extends": "standard"
+  }
+}
