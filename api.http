@@ -1,5 +1,7 @@
 ### Para recuperar información sobre el Pokémon "Ditto"
 GET http://localhost:1234/pokemon/ditto
+###
+GET http://localhost:1234/
 
 ### Para crear un nuevo pokemon
 POST http://localhost:1234/pokemon
@@ -12,3 +14,6 @@ Content-Type: application/json
         "transform"
     ]
 }
+
+### URL no existente
+GET http://localhost:1234/pokemon/unknown

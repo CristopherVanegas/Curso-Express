@@ -1,4 +1,6 @@
 const express = require('express')
+const ditto = require('./pokemon/ditto.json')
+
 const app = express()
 
 app.disable('x-powered-by') // para ocultar que el servidor esta hecho con express, por seguridad
@@ -6,8 +8,12 @@ app.disable('x-powered-by') // para ocultar que el servidor esta hecho con expre
 const PORT = process.env.PORT ?? 1234
 
 app.get('/', (req, res) => {
+  res.send('<h1>Bienvenido a mi API de Pokémon</h1>')
+})
+
+app.get('/pokemon/ditto', (req, res) => {
 //   res.json({ message: 'Hello World!' })
-  res.send('<h1>Hello World!</h1>')
+  res.json(ditto)
 })
 
 app.post('/pokemon', (req, res) => {
@@ -24,6 +30,10 @@ app.post('/pokemon', (req, res) => {
     data.timestamp = Date.now()
     res.status(201).json(data)
   })
+})
+
+app.use((req, res) => {
+  res.status(404).send('<h1>404<hr/>Página no encontrada</h1>')
 })
 
 app.listen(PORT, () => {
