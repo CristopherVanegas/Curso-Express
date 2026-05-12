@@ -5,7 +5,9 @@
   "main": "http.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon http.js"
+    "dev:1": "nodemon http.js",
+    "dev:2": "nodemon routing.js",
+    "dev:3": "node --watch express_project.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +27,8 @@
   },
   "eslintConfig": {
     "extends": "standard"
+  },
+  "dependencies": {
+    "express": "5.2.1"
   }
 }

@@ -1,0 +1,14 @@
+### Para recuperar información sobre el Pokémon "Ditto"
+GET http://localhost:1234/pokemon/ditto
+
+### Para crear un nuevo pokemon
+POST http://localhost:1234/pokemon
+Content-Type: application/json
+
+{
+    "name": "Pikachu nuevo",
+    "type": "Electric",
+    "moves": [
+        "transform"
+    ]
+}
