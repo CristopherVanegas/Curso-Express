@@ -7,6 +7,13 @@ app.disable('x-powered-by') // para ocultar que el servidor esta hecho con expre
 
 const PORT = process.env.PORT ?? 1234
 
+app.use((req, res, next) => {
+  console.log('mi primer middleware con express')
+  // trackear la request a la base de datos
+  // revisar si el usuario tiene cookies
+  next() // para pasar al siguiente middleware o ruta
+})
+
 app.get('/', (req, res) => {
   res.send('<h1>Bienvenido a mi API de Pokémon</h1>')
 })
