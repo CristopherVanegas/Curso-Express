@@ -8,10 +8,23 @@ app.disable('x-powered-by') // para ocultar que el servidor esta hecho con expre
 const PORT = process.env.PORT ?? 1234
 
 app.use((req, res, next) => {
-  console.log('mi primer middleware con express')
-  // trackear la request a la base de datos
-  // revisar si el usuario tiene cookies
-  next() // para pasar al siguiente middleware o ruta
+  if (req.method !== 'POST') return next()
+  if (req.headers['content-type'] !== 'application/json') return next()
+
+  // solo llegan los request tipo POST y los datos en formato json, si no es json, se ignora el body
+  let body = ''
+
+  //   escuchar el evento data
+  req.on('data', chunk => {
+    body += chunk.toString()
+  })
+
+  req.on('end', () => {
+    const data = JSON.parse(body)
+    data.timestamp = Date.now()
+    req.body = data // se mutó el request. el body al objeto req para que este disponible en los siguientes middlewares o rutas
+    next()
+  })
 })
 
 app.get('/', (req, res) => {
@@ -24,19 +37,8 @@ app.get('/pokemon/ditto', (req, res) => {
 })
 
 app.post('/pokemon', (req, res) => {
-  let body = ''
-
-  //   escuchar el evento data
-  req.on('data', chunk => {
-    body += chunk.toString()
-  })
-
-  req.on('end', () => {
-    const data = JSON.parse(body)
-    // llamamos a la base para guardar registro
-    data.timestamp = Date.now()
-    res.status(201).json(data)
-  })
+  // req.body se deberia guardar en base de datos
+  res.status(201).json(req.body)
 })
 
 app.use((req, res) => {
